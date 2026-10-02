@@ -21,5 +21,9 @@ namespace DogHeist.EditorTools.Greybox
         public MatchManager Match { get; set; }
 
         public NavMeshSurface NavMesh { get; set; }
+
+        public Camera MainCamera { get; set; }
+
+        public GreyboxHud Hud { get; set; }
     }
 }

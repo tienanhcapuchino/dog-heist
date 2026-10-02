@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b5e77e0be53f534fb3842e69167168c, type: 3}
+  m_Name: ThiefConfig
+  m_EditorClassIdentifier: DogHeist.Gameplay::DogHeist.Gameplay.Thief.ThiefConfig
+  <WalkSpeed>k__BackingField: 3
+  <CrouchSpeed>k__BackingField: 1.5
+  <SprintSpeed>k__BackingField: 5.5
+  <CarrySpeedMultiplier>k__BackingField: 0.7
+  <RotationSpeed>k__BackingField: 720
+  <Gravity>k__BackingField: -20
+  <CrouchNoiseRadius>k__BackingField: 1.5
+  <WalkNoiseRadius>k__BackingField: 4
+  <SprintNoiseRadius>k__BackingField: 9
+  <CarryNoiseBonus>k__BackingField: 2
+  <NoiseInterval>k__BackingField: 0.4
+  <DarkVisibility>k__BackingField: 0.45
+  <LitVisibility>k__BackingField: 1
+  <CrouchVisibilityMultiplier>k__BackingField: 0.6
+  <HiddenVisibility>k__BackingField: 0.1
+  <InteractRadius>k__BackingField: 1.5
+  <StartingLures>k__BackingField: 2
+  <LureThrowForce>k__BackingField: 6
+  <LureThrowArc>k__BackingField: 0.5
