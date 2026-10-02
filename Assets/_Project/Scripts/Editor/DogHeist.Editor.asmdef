@@ -1,0 +1,26 @@
+{
+    "name": "DogHeist.Editor",
+    "rootNamespace": "DogHeist.EditorTools",
+    "references": [
+        "DogHeist.Core",
+        "DogHeist.Gameplay",
+        "DogHeist.AI",
+        "DogHeist.UI",
+        "Unity.AI.Navigation",
+        "Unity.Cinemachine",
+        "Unity.InputSystem",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
