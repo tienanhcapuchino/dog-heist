@@ -1,13 +1,13 @@
 # Lộ trình phát triển
 
-## M0: Khởi tạo (đang ở đây)
+## M0: Khởi tạo (xong)
 
 - [x] Cấu trúc repo, assembly, quy ước code
 - [x] Bộ khung code: di chuyển, tiếng ồn, ẩn nấp, AI chó và chủ nhà, thành tích
-- [ ] Tạo project Unity, cài package, tạo 3 file config
-- [ ] Dựng màn greybox theo README và chơi thử được từ đầu đến cuối
+- [x] Tạo project Unity, cài package, tạo 3 file config
+- [x] Dựng màn greybox (công cụ `DogHeist > Tools > Build Greybox Level`) và chơi thử được từ đầu đến cuối
 
-## M1: Gameplay vui (prototype)
+## M1: Gameplay vui (prototype) (đang ở đây)
 
 - [ ] Cân bằng thông số tiếng ồn, tầm nhìn, tốc độ cho tới khi một ván kéo dài 3 đến 5 phút
 - [ ] Cho 3 đến 5 người chơi thử, ghi lại chỗ họ bối rối hoặc chán

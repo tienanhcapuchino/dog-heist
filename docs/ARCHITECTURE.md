@@ -5,13 +5,15 @@
 ```
 DogHeist.UI ─────► DogHeist.Gameplay ─────► DogHeist.Core
 DogHeist.AI ─────► DogHeist.Gameplay
-DogHeist.Tests ──► DogHeist.Core, DogHeist.Gameplay
+DogHeist.Editor ─► tất cả (chỉ chạy trong Editor, không assembly nào tham chiếu ngược)
+DogHeist.Tests ──► DogHeist.Core, Gameplay, AI, UI, Editor
 ```
 
 - **Core**: logic thuần không cần scene (máy trạng thái, kết quả ván, luật thành tích, lưu file). Không biết gì về nhân vật hay AI.
 - **Gameplay**: luật chơi và nhân vật người chơi (input, di chuyển, tiếng ồn, ẩn nấp, tương tác, điều phối ván). Không biết gì về AI hay UI.
 - **AI**: chó và chủ nhà do máy điều khiển. Đọc trạng thái của Gameplay, báo sự kiện qua `MatchEvents`.
 - **UI**: chỉ đọc dữ liệu và nghe sự kiện, không chứa luật chơi.
+- **Editor**: công cụ trong Unity Editor (dựng màn greybox). Không được đưa vào bản build game.
 
 Quy tắc: một assembly không bao giờ tham chiếu ngược chiều mũi tên. Khi cần "báo ngược lên", dùng sự kiện hoặc interface.
 

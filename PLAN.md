@@ -47,24 +47,24 @@ Mục tiêu: mở project trong Unity, bấm Play và chơi được một ván 
 
 **Cài đặt**
 
-- [ ] Cài Unity Hub, Unity 6.3 LTS (kèm Windows Build Support), Visual Studio hoặc Rider
-- [ ] Cài Git, Git LFS, tạo repo riêng tư trên GitHub
-- [ ] Tạo project Universal 3D, chép bộ khung code vào theo README
-- [ ] Cài package AI Navigation, Cinemachine; đặt Active Input Handling
-- [ ] Mở Console, sửa hết lỗi biên dịch (dán lỗi cho Claude Code)
-- [ ] Chạy EditMode test, tất cả phải xanh
+- [x] Cài Unity Hub, Unity 6.3 LTS (kèm Windows Build Support), Visual Studio hoặc Rider
+- [x] Cài Git, Git LFS, tạo repo riêng tư trên GitHub
+- [x] Tạo project Universal 3D, chép bộ khung code vào theo README
+- [x] Cài package AI Navigation, Cinemachine; đặt Active Input Handling
+- [x] Mở Console, sửa hết lỗi biên dịch (dán lỗi cho Claude Code)
+- [x] Chạy EditMode test, tất cả phải xanh
 
 **Dựng màn greybox**
 
-- [ ] Nhờ Claude Code viết công cụ Editor tự dựng màn greybox, hoặc làm tay theo 18 bước trong README
-- [ ] Tạo 3 file config Thief, Dog, Owner
-- [ ] Bake NavMesh, gắn camera Cinemachine theo trộm
-- [ ] Dựng HUD tối thiểu: thanh tiếng ồn, gợi ý phím, màn kết quả
+- [x] Nhờ Claude Code viết công cụ Editor tự dựng màn greybox, hoặc làm tay theo 18 bước trong README
+- [x] Tạo 3 file config Thief, Dog, Owner
+- [x] Bake NavMesh, gắn camera Cinemachine theo trộm
+- [x] Dựng HUD tối thiểu: thanh tiếng ồn, gợi ý phím, màn kết quả
 
 **Commit đầu tiên**
 
-- [ ] Commit scene, prefab, config cùng file .meta; đẩy lên GitHub
-- [ ] Cập nhật mục "Trạng thái hiện tại" trong CLAUDE.md
+- [x] Commit scene, prefab, config cùng file .meta; đẩy lên GitHub
+- [x] Cập nhật mục "Trạng thái hiện tại" trong CLAUDE.md
 
 **Hoàn thành khi:** chơi được cả hai kết cục (trốn thoát và bị bắt), thành tích tăng đúng sau mỗi ván, không còn lỗi đỏ trong Console.
 
