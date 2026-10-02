@@ -44,6 +44,9 @@ UpgradeLog*.htm
 *.unitypackage
 *.app
 
+# Ghi chép tiến độ của Claude Code khi chạy kế hoạch
+.superpowers/
+
 # Hệ điều hành
 .DS_Store
 Thumbs.db
