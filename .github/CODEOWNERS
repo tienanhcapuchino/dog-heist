@@ -1,3 +1,3 @@
-# Chủ sở hữu code: mọi PR đều cần tienanhcapuchino duyệt trước khi merge
-# (có hiệu lực khi bật "Require review from Code Owners" trong ruleset của nhánh main).
+# Chủ sở hữu code: GitHub tự động thêm tienanhcapuchino làm người review cho mọi PR.
+# Quyền merge vào main được kiểm soát bằng ruleset (Restrict updates + Bypass list), không phải file này.
 * @tienanhcapuchino
