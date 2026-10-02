@@ -1,0 +1,50 @@
+# Thư mục Unity tự sinh, không bao giờ commit
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# File asset trung gian của Unity
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+crashlytics-buildid.txt
+
+# File project do Unity sinh cho IDE (Visual Studio, Rider)
+.vs/
+.idea/
+.gradle/
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+UpgradeLog*.htm
+
+# File build
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+desktop.ini
