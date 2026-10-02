@@ -18,11 +18,21 @@ if ([string]::IsNullOrWhiteSpace($UnityPath) -or -not (Test-Path $UnityPath))
     exit 2
 }
 
-if (Test-Path (Join-Path $projectPath "Temp/UnityLockfile"))
+# Unity giữ khóa độc quyền trên lockfile khi đang mở project. Lockfile còn sót mà không bị khóa
+# (ví dụ batchmode dừng vì lỗi biên dịch) thì bỏ qua, Unity sẽ tự ghi đè.
+$lockFile = Join-Path $projectPath "Temp/UnityLockfile"
+if (Test-Path $lockFile)
 {
-    Write-Host "[Tests] Unity Editor đang mở project này. Đóng Unity rồi chạy lại."
-    Write-Host "        Nếu chắc chắn Unity đã đóng (ví dụ sau khi bị treo), xóa file Temp/UnityLockfile."
-    exit 3
+    try
+    {
+        $stream = [IO.File]::Open($lockFile, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+        $stream.Close()
+    }
+    catch [IO.IOException]
+    {
+        Write-Host "[Tests] Unity Editor đang mở project này. Đóng Unity rồi chạy lại."
+        exit 3
+    }
 }
 
 $outDir = Join-Path $projectPath "Logs/TestRuns"
