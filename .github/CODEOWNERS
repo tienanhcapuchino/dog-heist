@@ -1,0 +1,3 @@
+# Chủ sở hữu code: mọi PR đều cần tienanhcapuchino duyệt trước khi merge
+# (có hiệu lực khi bật "Require review from Code Owners" trong ruleset của nhánh main).
+* @tienanhcapuchino

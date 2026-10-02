@@ -139,5 +139,6 @@ Bấm Play và thử trộm con chó đầu tiên.
 ## Quy trình làm việc với git
 
 - Nhánh `main` luôn chạy được. Mỗi tính năng làm trên nhánh riêng, ví dụ `feature/dog-bark-animation`.
+- `main` được bảo vệ: không push thẳng, mọi thay đổi đi qua Pull Request và chỉ chủ repo (`@tienanhcapuchino`, khai báo trong `.github/CODEOWNERS`) được duyệt và merge.
 - Commit nhỏ, mô tả rõ việc đã làm.
 - Không commit thư mục `Library`, `Temp`, `Logs` (đã có trong `.gitignore`). Luôn commit file `.meta` đi kèm asset.
