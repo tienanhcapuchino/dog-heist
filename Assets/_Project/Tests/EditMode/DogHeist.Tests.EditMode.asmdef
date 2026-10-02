@@ -5,7 +5,12 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "DogHeist.Core",
-        "DogHeist.Gameplay"
+        "DogHeist.Gameplay",
+        "DogHeist.AI",
+        "DogHeist.UI",
+        "DogHeist.Editor",
+        "Unity.AI.Navigation",
+        "Unity.Cinemachine"
     ],
     "includePlatforms": [
         "Editor"
