@@ -72,6 +72,10 @@ AI ──► Gameplay
 
 ## Dựng màn chơi greybox đầu tiên
 
+**Cách nhanh (khuyên dùng):** chọn menu *DogHeist > Tools > Build Greybox Level*. Công cụ tự tạo scene `Level01_Neighborhood`, 3 file config, prefab đồ ăn, layer Characters, bake NavMesh, gắn camera và HUD, rồi thêm scene vào Build Profiles. Chạy lại bất cứ lúc nào: chỉ object `[Greybox]` được dựng lại, config đã chỉnh được giữ nguyên.
+
+Các bước dưới đây là cách làm tay, để hiểu công cụ làm gì.
+
 Dùng khối hình đơn giản (cube, capsule) để thử gameplay trước, chưa cần đồ họa thật.
 
 **Môi trường**

@@ -27,7 +27,7 @@ Chi tiết:
 
 ## Quy tắc kiến trúc (bắt buộc giữ)
 
-- Chiều phụ thuộc assembly: `UI → Gameplay → Core`, `AI → Gameplay`. Không bao giờ tham chiếu ngược; cần báo ngược thì dùng sự kiện hoặc interface.
+- Chiều phụ thuộc assembly: `UI → Gameplay → Core`, `AI → Gameplay`, `Editor → tất cả`. Không bao giờ tham chiếu ngược; cần báo ngược thì dùng sự kiện hoặc interface. Không assembly runtime nào được tham chiếu `DogHeist.Editor` (namespace `DogHeist.EditorTools`).
 - Code nhân vật chỉ đọc điều khiển qua `ICharacterInput`, không đọc bàn phím trực tiếp.
 - Mọi quyết định thắng thua đi qua `MatchManager`; UI không được thay đổi trạng thái game.
 - Thông số cân bằng đặt trong ScriptableObject config (`ThiefConfig`, `DogConfig`, `OwnerConfig`), không viết cứng.
@@ -45,18 +45,21 @@ Chi tiết:
 
 ## Trạng thái hiện tại
 
-- Đã xong: bộ khung code đầy đủ (di chuyển trộm, tiếng ồn, vùng sáng và chỗ nấp, đồ ăn dụ chó, AI chó Idle/Alert/EatLure/Calm/Carried, AI chủ nhà Sleeping/Investigate/Patrol/Chase, MatchManager, thành tích, HUD, màn kết quả, EditMode test).
-- Code đã biên dịch thử ngoài Unity bằng .NET SDK với stub API Unity (0 lỗi) và test logic đạt, **nhưng chưa chạy trong Unity thật**.
-- Chưa có scene, prefab, file config (phải tạo trong Unity Editor theo README).
+- **Giai đoạn 0 xong (M0):** project Unity 6.3 LTS (6000.3.25f1, URP) chạy được; code biên dịch 0 lỗi trong Unity thật; 48 EditMode test đạt.
+- Bộ khung code đầy đủ: di chuyển trộm, tiếng ồn, vùng sáng và chỗ nấp, đồ ăn dụ chó, AI chó Idle/Alert/EatLure/Calm/Carried, AI chủ nhà Sleeping/Investigate/Patrol/Chase, MatchManager, thành tích, HUD, màn kết quả.
+- Công cụ `DogHeist > Tools > Build Greybox Level` (assembly `DogHeist.Editor`) dựng scene `Assets/_Project/Scenes/Level01_Neighborhood`, config, prefab, material, NavMesh, camera, HUD. Bố cục lấy từ `GreyboxLayout` (đo theo `ban_do_man_choi_trom_cho.png`).
+- Đã chơi thử theo `docs/testing/M0-smoke-test.md`: tạm đạt, không lỗi đỏ. Nhân vật vẫn là khối capsule.
+- Vấn đề đã biết: *Company Name*/*Product Name* còn là giá trị project mẫu; font TMP mặc định thiếu tiếng Việt.
 
 ## Việc tiếp theo được đề xuất
 
-1. Sửa lỗi biên dịch nếu có khi mở project lần đầu trong Unity.
-2. Viết Editor tool `DogHeist > Tools > Build Greybox Level` (assembly `DogHeist.Editor`, chỉ chạy trong Editor) tự dựng màn greybox thay cho 18 bước làm tay trong README.
-3. Cân bằng thông số cho ván chơi dài khoảng 3 đến 5 phút.
-4. Thêm chỉ báo "?" và "!" trên đầu AI.
+1. Giai đoạn 1 (M1): cân bằng thông số trong config cho ván chơi 3 đến 5 phút.
+2. Thêm chỉ báo "?" và "!" trên đầu AI (interface `IAwarenessSource` trong Gameplay, UI chỉ đọc interface).
+3. Font hỗ trợ tiếng Việt cho TMP; đổi *Company Name*/*Product Name*.
+4. Đồ họa nhân vật để M2 (nguồn đề xuất: Quaternius CC0 cho người và chó, Mixamo cho lom khom và bế đồ).
 
 ## Kiểm tra
 
-- Claude Code không mở được Unity Editor; người dùng chạy test qua *Window > General > Test Runner > EditMode*.
-- Sau khi sửa code, nhắc người dùng quay lại Unity xem Console có lỗi không và dán lỗi vào để xử lý tiếp.
+- Claude Code tự kiểm tra bằng `powershell -ExecutionPolicy Bypass -File tools/run-unity-tests.ps1` (thêm `-CompileOnly` để chỉ biên dịch, `-Filter <tên>` để chạy một nhóm test). **Unity Editor phải đang đóng**; script trả mã 3 nếu Unity đang mở project. Đường dẫn Unity.exe lấy từ biến môi trường `UNITY_EDITOR`.
+- Việc cần nhìn tận mắt (chạy menu, bấm Play) thì nhờ người dùng làm trong Unity và gửi Console hoặc ảnh chụp.
+- Không tự ý commit; làm xong thì hỏi người dùng trước khi commit, push hay tạo PR.
