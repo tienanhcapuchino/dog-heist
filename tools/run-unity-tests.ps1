@@ -58,7 +58,12 @@ else
     }
 }
 
-$process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -Wait -PassThru -NoNewWindow
+# Không dùng -Wait: nó chờ cả tiến trình con, mà Unity có thể bật tiến trình nền của Unity Hub
+# ("unity.exe serve") chạy mãi, làm script treo dù test đã xong. Chỉ chờ đúng tiến trình Unity.
+$process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -NoNewWindow
+# Giữ handle ngay khi tiến trình bắt đầu, nếu không PowerShell 5.1 có thể trả ExitCode rỗng.
+$null = $process.Handle
+$process.WaitForExit()
 
 $compileErrors = @()
 if (Test-Path $logFile)

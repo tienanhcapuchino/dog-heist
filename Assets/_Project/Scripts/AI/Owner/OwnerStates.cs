@@ -1,4 +1,5 @@
 using DogHeist.Core.FSM;
+using DogHeist.Gameplay.Awareness;
 using DogHeist.Gameplay.Match;
 using DogHeist.Gameplay.Noise;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace DogHeist.AI.Owner
         protected OwnerState(OwnerAI owner) => Owner = owner;
 
         protected OwnerAI Owner { get; }
+
+        /// <summary>Mức cảnh giác hiện ra trên đầu chủ nhà khi ở trạng thái này.</summary>
+        public abstract AwarenessLevel Awareness { get; }
 
         public virtual void Enter()
         {
@@ -44,6 +48,8 @@ namespace DogHeist.AI.Owner
         {
         }
 
+        public override AwarenessLevel Awareness => AwarenessLevel.Sleeping;
+
         public override void Enter()
         {
             Owner.SetHearingSensitivity(Owner.Config.SleepingHearingSensitivity);
@@ -73,6 +79,8 @@ namespace DogHeist.AI.Owner
         public OwnerInvestigateState(OwnerAI owner) : base(owner)
         {
         }
+
+        public override AwarenessLevel Awareness => AwarenessLevel.Suspicious;
 
         public void SetTarget(Vector3 target)
         {
@@ -133,6 +141,8 @@ namespace DogHeist.AI.Owner
         public OwnerPatrolState(OwnerAI owner) : base(owner)
         {
         }
+
+        public override AwarenessLevel Awareness => AwarenessLevel.Suspicious;
 
         public override void Enter()
         {
@@ -203,6 +213,8 @@ namespace DogHeist.AI.Owner
         public OwnerChaseState(OwnerAI owner) : base(owner)
         {
         }
+
+        public override AwarenessLevel Awareness => AwarenessLevel.Alerted;
 
         public override void Enter()
         {
