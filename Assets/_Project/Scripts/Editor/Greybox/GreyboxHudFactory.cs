@@ -17,6 +17,8 @@ namespace DogHeist.EditorTools.Greybox
     internal static class GreyboxHudFactory
     {
         private const string BuiltinUiSprite = "UI/Skin/UISprite.psd";
+        private const string BuiltinKnobSprite = "UI/Skin/Knob.psd";
+        private static readonly Color PupilColor = new Color(0.1f, 0.1f, 0.15f);
         private static readonly Vector2 ReferenceResolution = new Vector2(1920f, 1080f);
         private static readonly Vector2 BottomLeft = new Vector2(0f, 0f);
         private static readonly Vector2 TopLeft = new Vector2(0f, 1f);
@@ -24,7 +26,7 @@ namespace DogHeist.EditorTools.Greybox
         private static readonly Vector2 TopCenter = new Vector2(0.5f, 1f);
         private static readonly Vector2 Center = new Vector2(0.5f, 0.5f);
 
-        public static GreyboxHud Create(Transform parent, ThiefMotor thief, MatchManager match)
+        public static GreyboxHud Create(Transform parent, ThiefMotor thief, MatchManager match, GreyboxAssets assets)
         {
             var canvasObject = GreyboxPrimitives.CreateEmpty("HUD Canvas", parent, Vector3.zero);
             canvasObject.layer = LayerMask.NameToLayer("UI");
@@ -43,6 +45,8 @@ namespace DogHeist.EditorTools.Greybox
                 Status = CreateStatus(canvasObject, thief),
                 ResultScreen = CreateResultScreen(canvasObject, match)
             };
+            CreateVisibilityEye(canvas.transform, thief);
+            ApplyFont(canvasObject, assets.UiFont);
 
             var eventSystem = GreyboxPrimitives.CreateEmpty("EventSystem", parent, Vector3.zero);
             eventSystem.AddComponent<EventSystem>();
@@ -76,7 +80,8 @@ namespace DogHeist.EditorTools.Greybox
             var canvas = canvasObject.transform;
             var prompt = CreateText("PromptText", canvas, BottomCenter, new Vector2(0f, 120f), new Vector2(1000f, 50f), 32f, TextAlignmentOptions.Center);
             var lure = CreateText("LureText", canvas, TopLeft, new Vector2(40f, -40f), new Vector2(600f, 40f), 28f, TextAlignmentOptions.Left);
-            var visibilityText = CreateText("VisibilityText", canvas, TopLeft, new Vector2(40f, -90f), new Vector2(600f, 40f), 28f, TextAlignmentOptions.Left);
+            // Dời sang phải 80 px để chừa chỗ cho con mắt (CreateVisibilityEye).
+            var visibilityText = CreateText("VisibilityText", canvas, TopLeft, new Vector2(120f, -90f), new Vector2(600f, 40f), 28f, TextAlignmentOptions.Left);
 
             var status = canvasObject.AddComponent<ThiefStatusUI>();
             SerializedWiring.Assign(status, "_interactor", thief.GetComponent<ThiefInteractor>());
@@ -85,6 +90,38 @@ namespace DogHeist.EditorTools.Greybox
             SerializedWiring.Assign(status, "_lureText", lure);
             SerializedWiring.Assign(status, "_visibilityText", visibilityText);
             return status;
+        }
+
+        // Con mắt ghép từ hình tròn có sẵn của Unity: lòng trắng kéo dẹt, con ngươi tròn nhỏ ở giữa.
+        // VisibilityEyeUI co giãn chiều cao lòng trắng (con ngươi là con nên co theo) để mắt nhắm hay mở.
+        private static VisibilityEyeUI CreateVisibilityEye(Transform canvas, ThiefMotor thief)
+        {
+            var knob = AssetDatabase.GetBuiltinExtraResource<Sprite>(BuiltinKnobSprite);
+
+            var white = CreateImage("VisibilityEye", canvas, TopLeft, new Vector2(40f, -94f), new Vector2(64f, 32f), Color.white);
+            white.sprite = knob;
+            var pupil = CreateImage("Pupil", white.transform, Center, Vector2.zero, new Vector2(20f, 20f), PupilColor);
+            pupil.sprite = knob;
+
+            var eye = white.gameObject.AddComponent<VisibilityEyeUI>();
+            SerializedWiring.Assign(eye, "_visibility", thief.GetComponent<ThiefVisibility>());
+            SerializedWiring.Assign(eye, "_eyeWhite", white.rectTransform);
+            SerializedWiring.Assign(eye, "_eyeWhiteImage", white);
+            return eye;
+        }
+
+        // Font mặc định của TextMeshPro thiếu dấu tiếng Việt; dùng Be Vietnam Pro khi người dùng đã tải.
+        private static void ApplyFont(GameObject canvasObject, TMP_FontAsset font)
+        {
+            if (font == null)
+            {
+                return;
+            }
+
+            foreach (var text in canvasObject.GetComponentsInChildren<TMP_Text>(true))
+            {
+                text.font = font;
+            }
         }
 
         // ResultScreenUI gắn lên Canvas (luôn bật), không gắn lên panel bị ẩn, để còn nhận sự kiện MatchEnded.

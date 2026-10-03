@@ -2,6 +2,7 @@ using DogHeist.AI.Dog;
 using DogHeist.AI.Owner;
 using DogHeist.Gameplay.Match;
 using DogHeist.Gameplay.Thief;
+using DogHeist.UI.Awareness;
 using Unity.AI.Navigation;
 using UnityEngine;
 
@@ -25,5 +26,9 @@ namespace DogHeist.EditorTools.Greybox
         public Camera MainCamera { get; set; }
 
         public GreyboxHud Hud { get; set; }
+
+        public AwarenessIndicatorUI DogIndicator { get; set; }
+
+        public AwarenessIndicatorUI OwnerIndicator { get; set; }
     }
 }

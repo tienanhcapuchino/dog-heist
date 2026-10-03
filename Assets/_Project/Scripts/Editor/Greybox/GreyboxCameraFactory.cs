@@ -1,3 +1,4 @@
+using DogHeist.UI.Feedback;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -26,6 +27,11 @@ namespace DogHeist.EditorTools.Greybox
             mainCameraObject.AddComponent<AudioListener>();
             mainCameraObject.AddComponent<CinemachineBrain>();
 
+            // Rung camera khi chủ nhà phát hiện trộm: nguồn rung ở Main Camera, camera FreeLook nghe và rung theo.
+            var impulse = mainCameraObject.AddComponent<CinemachineImpulseSource>();
+            var shake = mainCameraObject.AddComponent<SpottedCameraShake>();
+            SerializedWiring.Assign(shake, "_impulse", impulse);
+
             var freeLookObject = GreyboxPrimitives.CreateEmpty("FreeLook Camera", parent, startPosition);
             var freeLook = freeLookObject.AddComponent<CinemachineCamera>();
             freeLook.Follow = target;
@@ -35,6 +41,7 @@ namespace DogHeist.EditorTools.Greybox
             var composer = freeLookObject.AddComponent<CinemachineRotationComposer>();
             composer.TargetOffset = LookOffset;
             freeLookObject.AddComponent<CinemachineInputAxisController>();
+            freeLookObject.AddComponent<CinemachineImpulseListener>();
 
             return camera;
         }

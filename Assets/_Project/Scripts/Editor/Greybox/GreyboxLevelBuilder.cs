@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DogHeist.Gameplay.Audio;
 using DogHeist.Gameplay.Match;
 using DogHeist.Gameplay.Thief;
 using TMPro;
@@ -25,6 +26,8 @@ namespace DogHeist.EditorTools.Greybox
         private const string NavMeshDataPath = "Assets/_Project/Scenes/Level01_Neighborhood_NavMesh.asset";
         private const string LitShaderName = "Universal Render Pipeline/Lit";
         private const string TmpSettingsResource = "TMP Settings";
+        private const float DogIndicatorHeight = 1.0f;
+        private const float OwnerIndicatorHeight = 2.3f;
         private static readonly Color NightAmbient = new Color(0.08f, 0.10f, 0.16f);
 
         [MenuItem("DogHeist/Tools/Build Greybox Level")]
@@ -87,12 +90,23 @@ namespace DogHeist.EditorTools.Greybox
             var owner = GreyboxCharacterFactory.CreateOwner(characters, assets, visibility,
                 environment.OwnerBed, environment.PatrolWaypoints);
 
+            // Phản hồi: dấu trên đầu AI và âm thanh.
+            var dogIndicator = GreyboxFeedbackFactory.CreateIndicator(
+                dog, GreyboxFeedbackFactory.CreateIndicatorAnchor(dog, DogIndicatorHeight), assets);
+            var ownerIndicator = GreyboxFeedbackFactory.CreateIndicator(
+                owner, GreyboxFeedbackFactory.CreateIndicatorAnchor(owner, OwnerIndicatorHeight), assets);
+            GreyboxFeedbackFactory.AddVoice(dog, AwarenessVoice.Dog, assets);
+            GreyboxFeedbackFactory.AddNoiseSound(dog.gameObject, NoiseSoundKind.Bark, assets);
+            GreyboxFeedbackFactory.AddVoice(owner, AwarenessVoice.Owner, assets);
+            GreyboxFeedbackFactory.AddNoiseSound(thief.gameObject, NoiseSoundKind.Footsteps, assets);
+
             var match = GreyboxPrimitives.CreateEmpty("Match", root.transform, Vector3.zero).AddComponent<MatchManager>();
             SerializedWiring.Assign(match, "_thief", thief);
+            GreyboxFeedbackFactory.AddMatchStinger(match.gameObject, assets);
 
             var camera = GreyboxCameraFactory.Create(root.transform, thief.transform);
             SerializedWiring.Assign(thief, "_cameraTransform", camera.transform);
-            var hud = GreyboxHudFactory.Create(root.transform, thief, match);
+            var hud = GreyboxHudFactory.Create(root.transform, thief, match, assets);
 
             environment.NavMesh.layerMask = ~(1 << assets.CharactersLayer);
 
@@ -105,7 +119,9 @@ namespace DogHeist.EditorTools.Greybox
                 Match = match,
                 NavMesh = environment.NavMesh,
                 MainCamera = camera,
-                Hud = hud
+                Hud = hud,
+                DogIndicator = dogIndicator,
+                OwnerIndicator = ownerIndicator
             };
         }
 

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d975f99260089ef46bc6a219810ab24c, type: 3}
+  m_Name: OwnerShout
+  m_EditorClassIdentifier: DogHeist.Gameplay::DogHeist.Gameplay.Audio.AudioCue
+  _clips: []
+  _volumeRange: {x: 0.9, y: 1}
+  _pitchRange: {x: 0.95, y: 1.05}
+  _spatialBlend: 1
+  _maxDistance: 25
