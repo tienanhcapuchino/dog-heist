@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d975f99260089ef46bc6a219810ab24c, type: 3}
   m_Name: LureLand
   m_EditorClassIdentifier: DogHeist.Gameplay::DogHeist.Gameplay.Audio.AudioCue
-  _clips: []
-  _volumeRange: {x: 0.9, y: 1}
+  _clips:
+  - {fileID: 8300000, guid: 979d2d67d0df41d696f6652c8f2093e5, type: 3}
+  - {fileID: 8300000, guid: 0c00f68b4a0d4b55846525d97ea93386, type: 3}
+  - {fileID: 8300000, guid: be2d9ab214f7442b9be309f5f495d276, type: 3}
+  _volumeRange: {x: 0.6, y: 0.8}
   _pitchRange: {x: 0.95, y: 1.05}
   _spatialBlend: 1
   _maxDistance: 25

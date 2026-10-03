@@ -49,17 +49,22 @@ Chi tiết:
 - Bộ khung code đầy đủ: di chuyển trộm, tiếng ồn, vùng sáng và chỗ nấp, đồ ăn dụ chó, AI chó Idle/Alert/EatLure/Calm/Carried, AI chủ nhà Sleeping/Investigate/Patrol/Chase, MatchManager, thành tích, HUD, màn kết quả.
 - Công cụ `DogHeist > Tools > Build Greybox Level` (assembly `DogHeist.Editor`) dựng scene `Assets/_Project/Scenes/Level01_Neighborhood`, config, prefab, material, NavMesh, camera, HUD. Bố cục lấy từ `GreyboxLayout` (đo theo `ban_do_man_choi_trom_cho.png`).
 - Đã chơi thử theo `docs/testing/M0-smoke-test.md`: tạm đạt, không lỗi đỏ. Nhân vật vẫn là khối capsule.
-- Vấn đề đã biết: *Company Name*/*Product Name* còn là giá trị project mẫu; font TMP mặc định thiếu tiếng Việt.
+- **G1a xong (phản hồi cho người chơi, phần đầu của M1):** 88 EditMode test đạt; người dùng chơi thử phần F của checklist và xác nhận đạt.
+  - Mức cảnh giác: `AwarenessLevel`, `IAwarenessSource` (Gameplay), `DogAI`/`OwnerAI` cài interface; dấu `Zzz`/`?`/`!`/`♥` trên đầu AI (`AwarenessIndicatorUI`, chữ và màu trong `AwarenessIndicatorStyle`).
+  - HUD: con mắt lộ/ẩn (`VisibilityEyeUI`); rung camera khi chủ nhà phát hiện (`SpottedCameraShake`, Cinemachine Impulse).
+  - Âm thanh tạm: `AudioCue`, `SoundLibrary` (10 cue trong `Assets/_Project/Audio/Cues/`), người phát tiếng trong `Gameplay/Audio`. File CC0 trong `Audio/SFX/`, nguồn ghi ở `docs/audio-sources.md`; `OwnerHuh`, `OwnerShout` còn trống.
+  - Font Be Vietnam Pro (OFL) dạng động, LiberationSans dự phòng. *Company Name* = `tienanhcapuchino`, *Product Name* = `Dog Heist`.
+- Mỗi task làm trên nhánh riêng `feature/<mô-tả-ngắn>` tạo từ `main`.
 
 ## Việc tiếp theo được đề xuất
 
-1. Giai đoạn 1 (M1): cân bằng thông số trong config cho ván chơi 3 đến 5 phút.
-2. Thêm chỉ báo "?" và "!" trên đầu AI (interface `IAwarenessSource` trong Gameplay, UI chỉ đọc interface).
-3. Font hỗ trợ tiếng Việt cho TMP; đổi *Company Name*/*Product Name*.
+1. G1c (M1): cân bằng thông số trong config cho ván chơi 3 đến 5 phút.
+2. Thêm giọng chủ nhà ("Hửm?", "Trộm!") và thay tiếng chó vui tạm (`DogHappy`).
+3. G1b (chiều sâu gameplay), G1d (chơi thử với 3 đến 5 người).
 4. Đồ họa nhân vật để M2 (nguồn đề xuất: Quaternius CC0 cho người và chó, Mixamo cho lom khom và bế đồ).
 
 ## Kiểm tra
 
-- Claude Code tự kiểm tra bằng `powershell -ExecutionPolicy Bypass -File tools/run-unity-tests.ps1` (thêm `-CompileOnly` để chỉ biên dịch, `-Filter <tên>` để chạy một nhóm test). **Unity Editor phải đang đóng**; script trả mã 3 nếu Unity đang mở project. Đường dẫn Unity.exe lấy từ biến môi trường `UNITY_EDITOR`.
+- Claude Code tự kiểm tra bằng `powershell -ExecutionPolicy Bypass -File tools/run-unity-tests.ps1` (thêm `-CompileOnly` để chỉ biên dịch, `-Filter <tên>` để chạy một nhóm test). **Unity Editor phải đang đóng**; script trả mã 3 nếu Unity đang mở project. Nên đóng cả Visual Studio: khi nó mở `dog-heist.sln`, test greybox có thể lỗi chập chờn "Cannot open file ... .meta for write". Đường dẫn Unity.exe lấy từ biến môi trường `UNITY_EDITOR`.
 - Việc cần nhìn tận mắt (chạy menu, bấm Play) thì nhờ người dùng làm trong Unity và gửi Console hoặc ảnh chụp.
 - Không tự ý commit; làm xong thì hỏi người dùng trước khi commit, push hay tạo PR.

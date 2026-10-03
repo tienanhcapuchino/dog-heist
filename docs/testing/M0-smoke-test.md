@@ -27,6 +27,13 @@ Mở scene `Assets/_Project/Scenes/Level01_Neighborhood`, bấm Play. Ghi Đạt
 ## E. Console
 - [ ] Không có lỗi đỏ trong suốt các ván trên
 
+## F. Phản hồi (G1a)
+- [ ] Chủ nhà hiện `Zzz` → `?` → `!`; chó hiện `!` khi sủa và `♥` khi ăn
+- [ ] Con mắt góc trên trái đổi khi vào bụi, vào tối, vào đèn
+- [ ] Camera rung khi chủ nhà bắt đầu đuổi
+- [ ] Nghe được các tiếng đã có file (xem `docs/audio-sources.md`)
+- [ ] Chữ tiếng Việt hiện đúng dấu
+
 ## Nếu gặp vấn đề
 - Chữ tiếng Việt hiện ô vuông: tạo font hỗ trợ tiếng Việt theo ghi chú cuối README.
 - Chó sủa mà chủ nhà không dậy: tăng `BarkNoiseRadius` trong `DogConfig` (ví dụ 20), không sửa code.
@@ -41,3 +48,11 @@ Vấn đề đã biết, để xử lý ở giai đoạn sau:
 - Nhân vật vẫn là khối capsule, chưa có model và animation (M2; nguồn đề xuất: Quaternius CC0, Mixamo).
 - *Company Name* và *Product Name* trong Player Settings còn là giá trị của project mẫu (`DefaultCompany`, `DogHeistTemplate`), nên thành tích lưu vào thư mục mang tên đó. Đổi trước khi có người chơi thật.
 - Font TMP mặc định (LiberationSans) phải vẽ thêm ký tự tiếng Việt vào atlas fallback lúc chạy; nên thay bằng font hỗ trợ tiếng Việt.
+
+## Kết quả chơi thử phần F (2026-10-03)
+
+Người dùng xác nhận **đạt cả 5 dòng** phần F. Log Editor không có exception của game; chỉ cảnh báo `[Audio]` cho `OwnerHuh` và `OwnerShout` (chưa có file), mỗi cue một lần. Thành tích lưu ở thư mục mới `LocalLow\tienanhcapuchino\Dog Heist\`.
+
+Đã xử lý từ lần trước: *Company Name*/*Product Name* đã đổi; font Be Vietnam Pro thay cho font mặc định.
+
+Còn lại: giọng chủ nhà chưa có file; tiếng chó vui (`DogHappy`) đang tạm dùng tiếng rên dài.

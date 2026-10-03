@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d975f99260089ef46bc6a219810ab24c, type: 3}
   m_Name: DogBark
   m_EditorClassIdentifier: DogHeist.Gameplay::DogHeist.Gameplay.Audio.AudioCue
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: 6f346f02af5e4f038274828a8f50b035, type: 3}
+  - {fileID: 8300000, guid: 745af5b9c4a044d9b33c92fe2466417f, type: 3}
+  - {fileID: 8300000, guid: 95a48524d58c473fa688865dc627aa81, type: 3}
+  - {fileID: 8300000, guid: da187d9acb8b48c2b14eab0cd2cfb5d0, type: 3}
   _volumeRange: {x: 0.9, y: 1}
   _pitchRange: {x: 0.95, y: 1.05}
   _spatialBlend: 1

@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d975f99260089ef46bc6a219810ab24c, type: 3}
   m_Name: FootstepWalk
   m_EditorClassIdentifier: DogHeist.Gameplay::DogHeist.Gameplay.Audio.AudioCue
-  _clips: []
-  _volumeRange: {x: 0.9, y: 1}
+  _clips:
+  - {fileID: 8300000, guid: 471e009bd1d84eac9222b30bbd991e10, type: 3}
+  - {fileID: 8300000, guid: 426c581e55ee42ec9f170f93953502bb, type: 3}
+  - {fileID: 8300000, guid: 188710f228da4084a091abc9edb929c1, type: 3}
+  - {fileID: 8300000, guid: c1dc0a309f6048d98c2efdd68264ad2c, type: 3}
+  - {fileID: 8300000, guid: f49cfa98ea8446e8a32345ee1dafa314, type: 3}
+  _volumeRange: {x: 0.55, y: 0.7}
   _pitchRange: {x: 0.95, y: 1.05}
   _spatialBlend: 1
   _maxDistance: 25
