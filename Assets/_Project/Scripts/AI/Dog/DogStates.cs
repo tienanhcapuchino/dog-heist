@@ -1,4 +1,5 @@
 using DogHeist.Core.FSM;
+using DogHeist.Gameplay.Awareness;
 using DogHeist.Gameplay.Items;
 using DogHeist.Gameplay.Noise;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace DogHeist.AI.Dog
         protected DogState(DogAI dog) => Dog = dog;
 
         protected DogAI Dog { get; }
+
+        /// <summary>Mức cảnh giác hiện ra trên đầu chó khi ở trạng thái này.</summary>
+        public abstract AwarenessLevel Awareness { get; }
 
         public virtual void Enter()
         {
@@ -60,6 +64,8 @@ namespace DogHeist.AI.Dog
         public DogIdleState(DogAI dog) : base(dog)
         {
         }
+
+        public override AwarenessLevel Awareness => AwarenessLevel.None;
 
         public override void Enter()
         {
@@ -112,6 +118,8 @@ namespace DogHeist.AI.Dog
         public DogAlertState(DogAI dog) : base(dog)
         {
         }
+
+        public override AwarenessLevel Awareness => AwarenessLevel.Alerted;
 
         public void SetFocus(Vector3 focusPoint) => _focusPoint = focusPoint;
 
@@ -181,6 +189,8 @@ namespace DogHeist.AI.Dog
         {
         }
 
+        public override AwarenessLevel Awareness => AwarenessLevel.Friendly;
+
         public void SetTarget(FoodLure lure) => _lure = lure;
 
         public override void Enter()
@@ -249,6 +259,8 @@ namespace DogHeist.AI.Dog
         {
         }
 
+        public override AwarenessLevel Awareness => AwarenessLevel.Friendly;
+
         public override void Enter()
         {
             Dog.Carryable.AllowPickup = true;
@@ -277,6 +289,8 @@ namespace DogHeist.AI.Dog
         public DogCarriedState(DogAI dog) : base(dog)
         {
         }
+
+        public override AwarenessLevel Awareness => AwarenessLevel.Friendly;
 
         public override void Enter()
         {

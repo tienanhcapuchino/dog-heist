@@ -1,7 +1,9 @@
+using System;
 using DogHeist.AI.Sensors;
 using DogHeist.Core.FSM;
 using DogHeist.Core.Match;
 using DogHeist.Core.Stats;
+using DogHeist.Gameplay.Awareness;
 using DogHeist.Gameplay.Dog;
 using DogHeist.Gameplay.Items;
 using DogHeist.Gameplay.Match;
@@ -17,7 +19,7 @@ namespace DogHeist.AI.Dog
     /// Idle (lang thang) → Alert (sủa) → EatLure (ăn đồ dụ) → Calm (hiền, cho bế) → Carried (bị bế).
     /// </summary>
     [RequireComponent(typeof(NavMeshAgent), typeof(CarryableDog))]
-    public sealed class DogAI : MonoBehaviour
+    public sealed class DogAI : MonoBehaviour, IAwarenessSource
     {
         private const float NavMeshSnapDistance = 2f;
         private const int WanderSampleAttempts = 5;
@@ -31,12 +33,26 @@ namespace DogHeist.AI.Dog
         [Tooltip("Vị trí chuồng chó. Để trống sẽ dùng vị trí ban đầu.")]
         [SerializeField] private Transform _home;
 
+        [Tooltip("Điểm trên đầu để đặt dấu cảnh giác. Để trống sẽ dùng chính con chó.")]
+        [SerializeField] private Transform _indicatorAnchor;
+
         private readonly StateMachine _stateMachine = new();
+        private readonly AwarenessTracker _awareness = new();
         private NavMeshAgent _agent;
         private CarryableDog _carryable;
         private Vector3 _spawnPosition;
 
+        public event Action<AwarenessLevel> AwarenessChanged
+        {
+            add => _awareness.Changed += value;
+            remove => _awareness.Changed -= value;
+        }
+
         public string CurrentStateName => _stateMachine.CurrentState?.GetType().Name ?? "None";
+
+        public AwarenessLevel Awareness => _awareness.Current;
+
+        public Transform IndicatorAnchor => _indicatorAnchor != null ? _indicatorAnchor : transform;
 
         internal DogConfig Config => _config;
 
@@ -78,6 +94,7 @@ namespace DogHeist.AI.Dog
             EatLureState = new DogEatLureState(this);
             CalmState = new DogCalmState(this);
             CarriedState = new DogCarriedState(this);
+            _stateMachine.StateChanged += HandleStateChanged;
         }
 
         private void OnEnable()
@@ -200,6 +217,16 @@ namespace DogHeist.AI.Dog
 
             point = HomePosition;
             return false;
+        }
+
+        // Đọc trạng thái hiện tại thay vì tham số "next": nếu Enter của trạng thái mới lại đổi trạng thái,
+        // sự kiện của lần đổi ngoài phát sau cùng và tham số "next" khi đó đã cũ.
+        private void HandleStateChanged(IState previous, IState next)
+        {
+            if (CurrentState != null)
+            {
+                _awareness.Set(CurrentState.Awareness);
+            }
         }
 
         private void HandleNoiseHeard(NoiseEvent noise) => CurrentState?.OnNoiseHeard(noise);

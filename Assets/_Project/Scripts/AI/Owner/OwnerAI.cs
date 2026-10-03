@@ -4,6 +4,7 @@ using DogHeist.AI.Sensors;
 using DogHeist.Core.FSM;
 using DogHeist.Core.Match;
 using DogHeist.Core.Stats;
+using DogHeist.Gameplay.Awareness;
 using DogHeist.Gameplay.Match;
 using DogHeist.Gameplay.Noise;
 using DogHeist.Gameplay.Thief;
@@ -17,7 +18,7 @@ namespace DogHeist.AI.Owner
     /// Sleeping (ngủ) → Investigate (ra xem) → Patrol (đi tuần) → Chase (đuổi bắt).
     /// </summary>
     [RequireComponent(typeof(NavMeshAgent))]
-    public sealed class OwnerAI : MonoBehaviour
+    public sealed class OwnerAI : MonoBehaviour, IAwarenessSource
     {
         [SerializeField] private OwnerConfig _config;
         [SerializeField] private HearingSensor _hearing;
@@ -31,11 +32,25 @@ namespace DogHeist.AI.Owner
 
         [SerializeField] private Transform[] _patrolWaypoints = Array.Empty<Transform>();
 
+        [Tooltip("Điểm trên đầu để đặt dấu cảnh giác. Để trống sẽ dùng chính chủ nhà.")]
+        [SerializeField] private Transform _indicatorAnchor;
+
         private readonly StateMachine _stateMachine = new();
+        private readonly AwarenessTracker _awareness = new();
         private NavMeshAgent _agent;
         private Vector3 _spawnPosition;
 
+        public event Action<AwarenessLevel> AwarenessChanged
+        {
+            add => _awareness.Changed += value;
+            remove => _awareness.Changed -= value;
+        }
+
         public string CurrentStateName => _stateMachine.CurrentState?.GetType().Name ?? "None";
+
+        public AwarenessLevel Awareness => _awareness.Current;
+
+        public Transform IndicatorAnchor => _indicatorAnchor != null ? _indicatorAnchor : transform;
 
         internal OwnerConfig Config => _config;
 
@@ -73,6 +88,7 @@ namespace DogHeist.AI.Owner
             InvestigateState = new OwnerInvestigateState(this);
             PatrolState = new OwnerPatrolState(this);
             ChaseState = new OwnerChaseState(this);
+            _stateMachine.StateChanged += HandleStateChanged;
         }
 
         private void OnEnable()
@@ -163,6 +179,16 @@ namespace DogHeist.AI.Owner
         }
 
         internal void LookAround(float deltaTime) => transform.Rotate(0f, _config.LookAroundSpeed * deltaTime, 0f);
+
+        // Đọc trạng thái hiện tại thay vì tham số "next": nếu Enter của trạng thái mới lại đổi trạng thái,
+        // sự kiện của lần đổi ngoài phát sau cùng và tham số "next" khi đó đã cũ.
+        private void HandleStateChanged(IState previous, IState next)
+        {
+            if (CurrentState != null)
+            {
+                _awareness.Set(CurrentState.Awareness);
+            }
+        }
 
         private void HandleNoiseHeard(NoiseEvent noise) => CurrentState?.OnNoiseHeard(noise);
 
