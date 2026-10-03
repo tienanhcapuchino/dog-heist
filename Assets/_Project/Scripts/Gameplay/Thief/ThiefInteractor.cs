@@ -1,3 +1,4 @@
+using System;
 using DogHeist.Gameplay.Controls;
 using DogHeist.Gameplay.Dog;
 using DogHeist.Gameplay.Interaction;
@@ -37,6 +38,9 @@ namespace DogHeist.Gameplay.Thief
         public IInteractable FocusedInteractable { get; private set; }
 
         public int LuresRemaining { get; private set; }
+
+        /// <summary>Phát mỗi khi trộm ném một miếng đồ ăn.</summary>
+        public event Action LureThrown;
 
         private void Awake()
         {
@@ -160,6 +164,7 @@ namespace DogHeist.Gameplay.Thief
             }
 
             LuresRemaining--;
+            LureThrown?.Invoke();
         }
     }
 }
