@@ -45,10 +45,11 @@ namespace DogHeist.UI.Hud
         {
             if (_visibility.IsHidden)
             {
-                return "Đang ẩn nấp";
+                return "Đang nấp";
             }
 
-            return _visibility.IsInLight ? "Đang bị lộ!" : "Trong bóng tối";
+            // Chữ ngắn đặt cạnh con mắt (VisibilityEyeUI).
+            return _visibility.IsInLight ? "Bị chiếu sáng" : "Trong tối";
         }
 
         private static void SetText(TMP_Text label, string value)
