@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d975f99260089ef46bc6a219810ab24c, type: 3}
   m_Name: StingerLose
   m_EditorClassIdentifier: DogHeist.Gameplay::DogHeist.Gameplay.Audio.AudioCue
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: c486257d40a04fd0bc2a71f4ab4ea0dc, type: 3}
   _volumeRange: {x: 0.9, y: 1}
-  _pitchRange: {x: 0.95, y: 1.05}
+  _pitchRange: {x: 1, y: 1}
   _spatialBlend: 0
   _maxDistance: 25

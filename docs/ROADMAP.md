@@ -11,8 +11,8 @@
 
 - [ ] Cân bằng thông số tiếng ồn, tầm nhìn, tốc độ cho tới khi một ván kéo dài 3 đến 5 phút
 - [ ] Cho 3 đến 5 người chơi thử, ghi lại chỗ họ bối rối hoặc chán
-- [ ] Thêm chỉ báo trên đầu AI (dấu ? khi nghi ngờ, dấu ! khi phát hiện)
-- [ ] Âm thanh tạm: bước chân, chó sủa, chủ nhà la
+- [x] Thêm chỉ báo trên đầu AI (dấu ? khi nghi ngờ, dấu ! khi phát hiện)
+- [x] Âm thanh tạm: bước chân, chó sủa, chủ nhà la (còn thiếu giọng chủ nhà)
 
 ## M2: Vertical slice
 

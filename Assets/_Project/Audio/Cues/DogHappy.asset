@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d975f99260089ef46bc6a219810ab24c, type: 3}
   m_Name: DogHappy
   m_EditorClassIdentifier: DogHeist.Gameplay::DogHeist.Gameplay.Audio.AudioCue
-  _clips: []
-  _volumeRange: {x: 0.9, y: 1}
+  _clips:
+  - {fileID: 8300000, guid: 499085690b94460da0976ef4152c50e9, type: 3}
+  _volumeRange: {x: 0.7, y: 0.8}
   _pitchRange: {x: 0.95, y: 1.05}
   _spatialBlend: 1
   _maxDistance: 25

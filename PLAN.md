@@ -81,10 +81,10 @@ Mục tiêu: một ván greybox dài 3 đến 5 phút, căng thẳng và buồn 
 
 **Phản hồi cho người chơi**
 
-- [ ] Dấu "?" trên đầu AI khi nghi ngờ, dấu "!" khi phát hiện
-- [ ] Biểu tượng con mắt cho biết đang lộ hay đang ẩn
-- [ ] Âm thanh tạm: bước chân, chó sủa, chủ nhà la (Claude tạo bằng code hoặc lấy từ gói CC0)
-- [ ] Rung camera nhẹ khi bị phát hiện
+- [x] Dấu "?" trên đầu AI khi nghi ngờ, dấu "!" khi phát hiện
+- [x] Biểu tượng con mắt cho biết đang lộ hay đang ẩn
+- [x] Âm thanh tạm: bước chân, chó sủa, chủ nhà la (Claude tạo bằng code hoặc lấy từ gói CC0)
+- [x] Rung camera nhẹ khi bị phát hiện
 
 **Thêm chiều sâu (chọn 1 đến 2 thứ, thử xem có vui không)**
 
