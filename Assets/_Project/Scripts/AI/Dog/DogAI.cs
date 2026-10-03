@@ -89,6 +89,11 @@ namespace DogHeist.AI.Dog
                 return;
             }
 
+            if (_hearing != null)
+            {
+                _hearing.Sensitivity = _config.HearingSensitivity;
+            }
+
             IdleState = new DogIdleState(this);
             AlertState = new DogAlertState(this);
             EatLureState = new DogEatLureState(this);
@@ -201,7 +206,7 @@ namespace DogHeist.AI.Dog
         internal void Bark() =>
             NoiseSystem.Emit(new NoiseEvent(transform.position, _config.BarkNoiseRadius, NoiseSource.Dog, gameObject));
 
-        internal FoodLure FindAvailableLure() => FoodLure.FindNearestUnclaimed(transform.position);
+        internal FoodLure FindAvailableLure() => FoodLure.FindNearestUnclaimed(transform.position, _config.LureNoticeDistance);
 
         internal bool TryGetWanderPoint(out Vector3 point)
         {

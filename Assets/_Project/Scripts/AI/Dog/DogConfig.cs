@@ -21,6 +21,9 @@ namespace DogHeist.AI.Dog
         [field: Tooltip("Khoảng cách chó phát hiện trộm khi trộm lộ hoàn toàn (nhân với độ lộ diện).")]
         [field: SerializeField, Min(0f)] public float NoticeDistance { get; private set; } = 5f;
 
+        [field: Tooltip("Độ thính tai của chó: nhân với bán kính tiếng ồn nghe được.")]
+        [field: SerializeField, Min(0f)] public float HearingSensitivity { get; private set; } = 1f;
+
         [field: Tooltip("Thời gian chó tiếp tục sủa sau khi mất dấu trộm.")]
         [field: SerializeField, Min(0f)] public float AlertDuration { get; private set; } = 5f;
 
@@ -30,6 +33,12 @@ namespace DogHeist.AI.Dog
 
         [field: Header("Đồ ăn và trạng thái hiền")]
         [field: SerializeField, Min(0.1f)] public float EatReachDistance { get; private set; } = 0.8f;
+
+        [field: Tooltip("Khoảng cách chó nhận ra đồ ăn dụ.")]
+        [field: SerializeField, Min(0f)] public float LureNoticeDistance { get; private set; } = 8f;
+
+        [field: Tooltip("Thời gian chó đứng ăn.")]
+        [field: SerializeField, Min(0f)] public float EatDuration { get; private set; } = 4f;
 
         [field: Tooltip("Thời gian chó hiền (cho bế) sau khi ăn xong.")]
         [field: SerializeField, Min(0f)] public float CalmDuration { get; private set; } = 15f;

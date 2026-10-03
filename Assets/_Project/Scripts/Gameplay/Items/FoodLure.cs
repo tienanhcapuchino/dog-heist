@@ -12,13 +12,9 @@ namespace DogHeist.Gameplay.Items
     {
         private static readonly List<FoodLure> s_active = new();
 
-        [field: SerializeField, Min(0f)] public float AttractRadius { get; private set; } = 8f;
-
-        [field: SerializeField, Min(0f)] public float EatDuration { get; private set; } = 4f;
-
         public bool IsClaimed { get; private set; }
 
-        public static FoodLure FindNearestUnclaimed(Vector3 position)
+        public static FoodLure FindNearestUnclaimed(Vector3 position, float maxDistance)
         {
             FoodLure nearest = null;
             var nearestSqrDistance = float.MaxValue;
@@ -31,8 +27,7 @@ namespace DogHeist.Gameplay.Items
                 }
 
                 var sqrDistance = (lure.transform.position - position).sqrMagnitude;
-                var radius = lure.AttractRadius;
-                if (sqrDistance > radius * radius || sqrDistance >= nearestSqrDistance)
+                if (sqrDistance > maxDistance * maxDistance || sqrDistance >= nearestSqrDistance)
                 {
                     continue;
                 }
@@ -62,6 +57,10 @@ namespace DogHeist.Gameplay.Items
             IsClaimed = true;
             Destroy(gameObject);
         }
+
+        internal static void RegisterForTests(FoodLure lure) => s_active.Add(lure);
+
+        internal static void UnregisterForTests(FoodLure lure) => s_active.Remove(lure);
 
         private void OnEnable() => s_active.Add(this);
 
