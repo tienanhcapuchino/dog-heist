@@ -20,6 +20,13 @@ namespace DogHeist.AI.Owner
 
         [field: SerializeField, Min(0f)] public float AwakeHearingSensitivity { get; private set; } = 1f;
 
+        [field: Header("Tầm nhìn")]
+        [field: Tooltip("Tầm nhìn tối đa khi trộm lộ hoàn toàn (nhân với độ lộ diện).")]
+        [field: SerializeField, Min(0f)] public float VisionRange { get; private set; } = 12f;
+
+        [field: Tooltip("Góc nhìn hình nón, tính bằng độ.")]
+        [field: SerializeField, Range(1f, 360f)] public float VisionFieldOfView { get; private set; } = 110f;
+
         [field: Header("Hành vi")]
         [field: Tooltip("Thời gian đứng nhìn quanh khi tới chỗ có tiếng động.")]
         [field: SerializeField, Min(0f)] public float InvestigateLookTime { get; private set; } = 4f;

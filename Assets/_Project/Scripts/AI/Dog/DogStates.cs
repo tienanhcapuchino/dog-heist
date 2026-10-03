@@ -225,7 +225,7 @@ namespace DogHeist.AI.Dog
             if (Dog.FlatDistanceTo(_lure.transform.position) <= Dog.Config.EatReachDistance)
             {
                 _isEating = true;
-                _eatTimer = _lure.EatDuration;
+                _eatTimer = Dog.Config.EatDuration;
                 Dog.Stop();
                 return;
             }

@@ -22,6 +22,15 @@ namespace DogHeist.AI.Sensors
 
         public float Range => _range;
 
+        public float FieldOfView => _fieldOfView;
+
+        /// <summary>AI gọi lúc khởi tạo để lấy tầm nhìn từ config thay cho giá trị gán trong Inspector.</summary>
+        public void Configure(float range, float fieldOfView)
+        {
+            _range = Mathf.Max(0f, range);
+            _fieldOfView = Mathf.Clamp(fieldOfView, 1f, 360f);
+        }
+
         private Vector3 EyePosition => _eye != null ? _eye.position : transform.position + Vector3.up * DefaultEyeHeight;
 
         private Vector3 Forward => _eye != null ? _eye.forward : transform.forward;

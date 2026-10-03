@@ -84,6 +84,8 @@ namespace DogHeist.AI.Owner
                 return;
             }
 
+            _vision?.Configure(_config.VisionRange, _config.VisionFieldOfView);
+
             SleepingState = new OwnerSleepingState(this);
             InvestigateState = new OwnerInvestigateState(this);
             PatrolState = new OwnerPatrolState(this);
