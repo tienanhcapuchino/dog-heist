@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd45cb0058882d46a91c1081e82d80f, type: 3}
+  m_Name: SoundLibrary
+  m_EditorClassIdentifier: DogHeist.Gameplay::DogHeist.Gameplay.Audio.SoundLibrary
+  <FootstepCrouch>k__BackingField: {fileID: 11400000, guid: c278a062bf165fc42ba5a9812ff2bb55, type: 2}
+  <FootstepWalk>k__BackingField: {fileID: 11400000, guid: 83d4f89599ef6ba41b9c292c5b4be246, type: 2}
+  <FootstepSprint>k__BackingField: {fileID: 11400000, guid: ea8484d9b8263304fbe9725c986287de, type: 2}
+  <DogBark>k__BackingField: {fileID: 11400000, guid: afa5aaa699df9d648a1b54e45988fa82, type: 2}
+  <DogHappy>k__BackingField: {fileID: 11400000, guid: 541d60aadc96a9c49acb9ecf0bfa2096, type: 2}
+  <OwnerHuh>k__BackingField: {fileID: 11400000, guid: 72d7edf0fa980de4b9fc27b0763ed7e9, type: 2}
+  <OwnerShout>k__BackingField: {fileID: 11400000, guid: 9ceaae5a896ae8c4e8ba36463a30fc4c, type: 2}
+  <LureLand>k__BackingField: {fileID: 11400000, guid: 8689e109adfe2c841a13ca6f166df7e3, type: 2}
+  <StingerWin>k__BackingField: {fileID: 11400000, guid: 78e0f264cbbfe3a4999c962a61ba6d5a, type: 2}
+  <StingerLose>k__BackingField: {fileID: 11400000, guid: 2cfb15f0f31367a4ebcc8f9b3daf0563, type: 2}

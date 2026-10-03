@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606bfbe39cd697241a9b5efea5ee8dbb, type: 3}
+  m_Name: AwarenessIndicatorStyle
+  m_EditorClassIdentifier: DogHeist.UI::DogHeist.UI.Awareness.AwarenessIndicatorStyle
+  _sleepingText: Zzz
+  _sleepingColor: {r: 0.75, g: 0.75, b: 0.8, a: 1}
+  _suspiciousText: '?'
+  _suspiciousColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  _alertedText: '!'
+  _alertedColor: {r: 1, g: 0.25, b: 0.2, a: 1}
+  _friendlyText: "\u2665"
+  _friendlyColor: {r: 1, g: 0.45, b: 0.65, a: 1}
