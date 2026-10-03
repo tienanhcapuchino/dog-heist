@@ -10,7 +10,8 @@
         "DogHeist.UI",
         "DogHeist.Editor",
         "Unity.AI.Navigation",
-        "Unity.Cinemachine"
+        "Unity.Cinemachine",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [
         "Editor"
