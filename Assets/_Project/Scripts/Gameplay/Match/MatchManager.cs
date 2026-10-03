@@ -18,11 +18,20 @@ namespace DogHeist.Gameplay.Match
 
         private StatsService _stats;
         private float _startTime;
+        private float _endedDuration;
         private bool _wasThiefSpotted;
 
         public MatchState State { get; private set; } = MatchState.NotStarted;
 
         public PlayerStats CurrentStats => _stats?.Current;
+
+        /// <summary>Thời gian ván đã trôi qua; đóng băng khi ván kết thúc.</summary>
+        public float ElapsedSeconds => State switch
+        {
+            MatchState.Playing => Time.time - _startTime,
+            MatchState.Ended => _endedDuration,
+            _ => 0f,
+        };
 
         private void Awake() => _stats = new StatsService(new JsonFileStatsStorage());
 
@@ -88,7 +97,8 @@ namespace DogHeist.Gameplay.Match
                 _thief.InputEnabled = false;
             }
 
-            var result = new MatchResult(_localRole, outcome, Time.time - _startTime, _wasThiefSpotted);
+            _endedDuration = Time.time - _startTime;
+            var result = new MatchResult(_localRole, outcome, _endedDuration, _wasThiefSpotted);
             _stats.Record(result);
             SetCursorLocked(false);
             MatchEvents.RaiseMatchEnded(result, _stats.Current);
